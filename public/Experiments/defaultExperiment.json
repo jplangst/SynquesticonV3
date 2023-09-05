@@ -1,0 +1,32 @@
+{ 
+  "taskListUID" : "8e8c0fda-cd4d-11ed-afa1-0242ac120002", 
+  "taskListName" : "Default Experiment", 
+  "communicationMethod" : {
+      "type":"MQTT",
+      "host":"localhost",
+      "port":"8083"
+  },
+  "loggingMethod": "MQTT",
+  "tasks" : [
+      [ 
+          {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Press"}}, 
+          {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"START", "action":"NEXT"}},
+          {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"when ready"}}
+      ],
+      [                                          
+            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Which SG has the highest level?"}}, 
+            {"type":"COMPONENT", "module":"SingleChoiceTask", "props":{"choices":"1,2,3,4"}}, 
+            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT", "action":"NEXT"}} 
+      ], 
+      [                                         
+            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Which RCPs are running?"}}, 
+            {"type":"COMPONENT", "module":"MultiChoiceTask", "props":{"choices":"A, B, C, D"}}, 
+            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT", "action":"NEXT"}} 
+      ], 
+      [                                         
+            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"What is the level in SG3?"}}, 
+            {"type":"COMPONENT", "module":"TextEntryTask", "props":{"DefaultValue":"","EntryFieldOptions":"size=10,0"}}, 
+            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT", "action":"END"}}
+      ] 
+  ]
+}
