@@ -1,18 +1,12 @@
-import {createContext, useContext, useEffect, useState} from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import {createContext, useContext} from 'react';
 import {CurrentExperimentContext} from '../App';
-
-// I want the communication Module to be the entry way into communication in the app
-// I want the details of the underlying communication library to be hidden 
-
-// Functions to broadcast and receive messages should be provided
-// This component should in turn ensure that the underlying comms method receives the data and broadcasts
 
 const eventLogTopic = "e"
 const commandsTopic = "c"
 let communicationDetails = {
     type: "local",
-    clientUUID: Math.random().toString(16).substr(2, 8),
-    //const clientUUID = uuidv4();//crypto.randomUUID();
+    clientUUID: uuidv4(),//crypto.randomUUID(),
     host: 'localhost',
     port: 8083
 }
@@ -31,9 +25,8 @@ export type CommunicationContextType = {
 }
 
 function connect(communicationDetails:any){  
-    console.log(communicationDetails)
-    const communicationModulePath = './' + communicationDetails.type + '/Interface'
     //Dynamically import the selected communication library
+    const communicationModulePath = './' + communicationDetails.type + '/Interface'
     import(communicationModulePath).then((comModule) => {
         comModule.default.connect(communicationDetails.clientUUID, communicationDetails.host, communicationDetails.port)
     }).catch(e => {
@@ -50,7 +43,13 @@ function subscribe(){
 }
 
 function disconnect(){
-
+    //Dynamically import the selected communication library
+    const communicationModulePath = './' + communicationDetails.type + '/Interface'
+    import(communicationModulePath).then((comModule) => {
+        comModule.default.disconnect()
+    }).catch(e => {
+        console.log(e);
+    });
 }
 
 

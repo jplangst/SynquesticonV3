@@ -1,11 +1,4 @@
-//import * as mqtt from 'mqtt'
-//import { connect } from "mqtt"
-
 import * as mqtt from 'mqtt/dist/mqtt.min';
-//import mqtt from 'mqtt'
-
-//console.log(MQTT)
-
 let client = null;
 const qos = 2; //{label:2, value:2}
 

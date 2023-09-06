@@ -8,8 +8,13 @@ function RenderComponent() {
 
     useEffect(() =>{
         if(experimentData){
-            console.log(experimentData)
             comms.connect(experimentData.communicationMethod)
+        }
+
+        return () => {
+            if(experimentData){
+                comms.disconnect()
+            }
         }
     }, [experimentData])
     
