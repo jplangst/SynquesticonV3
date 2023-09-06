@@ -27,7 +27,7 @@ export type CommunicationContextType = {
 function connect(communicationDetails:any){  
     //Dynamically import the selected communication library
     const communicationModulePath = './' + communicationDetails.type + '/Interface'
-    import(communicationModulePath).then((comModule) => {
+    import(communicationModulePath /* @vite-ignore */).then((comModule) => {
         comModule.default.connect(communicationDetails.clientUUID, communicationDetails.host, communicationDetails.port)
     }).catch(e => {
         console.log(e);
@@ -45,7 +45,7 @@ function subscribe(){
 function disconnect(){
     //Dynamically import the selected communication library
     const communicationModulePath = './' + communicationDetails.type + '/Interface'
-    import(communicationModulePath).then((comModule) => {
+    import(communicationModulePath /* @vite-ignore */).then((comModule) => {
         comModule.default.disconnect()
     }).catch(e => {
         console.log(e);
