@@ -10,25 +10,40 @@
     "type":"local"
   },
   "tasks" : [
-      [ 
-          {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Press"}}, 
-          {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"START", "action":"NEXT"}},
-          {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"when ready"}}
+      [    
+            {"type":"CODE", "module":"ClearEventStorage", "props":{"functionInput":null,"runType":"onUnload"}}, 
+            {"type":"CODE", "module":"SetTaskIndex", "props":{"functionInput":1,"runType":"onLoad"}},   
+            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Press"}} 
+      ],
+      [    
+            {"type":"CODE", "module":"WriteEvent", "props":{"functionInput":{"taskIndex":1,"eventType":"Task start","payload":"Task started"},"runType":"onLoad"}},   
+            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Press"}}, 
+            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"START", "onclick":{"function":"SetTaskIndex", "value":2}}},
+            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"when ready"}},
+            {"type":"CODE", "module":"WriteEvent", "props":{"functionInput":{"taskIndex":1,"eventType":"Task end","payload":"Task ended"},"runType":"onUnload"}}
       ],
       [                                          
             {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Which SG has the highest level?"}}, 
             {"type":"COMPONENT", "module":"SingleChoiceTask", "props":{"choices":"1,2,3,4"}}, 
-            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT", "action":"NEXT"}} 
+            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT","onclick":{"function":"SetTaskIndex", "value":3}}} 
       ], 
       [                                         
             {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Which RCPs are running?"}}, 
             {"type":"COMPONENT", "module":"MultiChoiceTask", "props":{"choices":"A, B, C, D"}}, 
-            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT", "action":"NEXT"}} 
+            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT","onclick":{"function":"SetTaskIndex", "value":4}}} 
       ], 
-      [                                         
+      [                                        
             {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"What is the level in SG3?"}}, 
             {"type":"COMPONENT", "module":"TextEntryTask", "props":{"DefaultValue":"Write answer here","EntryFieldOptions":"size=20,2"}}, 
-            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT", "action":"END"}}
+            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT","onclick":{"function":"SetTaskIndex", "value":5}}}
+      ], 
+      [    
+            {"type":"CODE", "module":"DownloadLogEvents", "props":{"functionInput":"logTest.csv","runType":"onLoad"}},   
+            {"type":"CODE", "module":"DownloadLogEvents", "props":{"functionInput":"logTest.csv","runType":"onUnload"}},    
+            {"type":"CODE", "module":"SetTaskIndex", "props":{"functionInput":6,"runType":"onLoad"}}                          
+      ], 
+      [                             
+            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Thanks for participating!"}}
       ] 
   ]
 }

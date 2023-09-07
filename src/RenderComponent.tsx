@@ -1,7 +1,8 @@
-import {useState, useEffect, useContext, createContext} from 'react';
+import {useState, useEffect, useContext, createContext, Suspense} from 'react';
 import {CurrentExperimentContext} from './App'
 import {useCommunicationContext} from './Communication/communicationModule';
-import getTaskTable from './Modules/TaskTable';
+import { callScript } from './Utils/Utils';
+import getExperimentData from './Modules/GetExperimentData';
 
 export const callBacksContext = createContext<any>(null);
 
@@ -9,25 +10,67 @@ function RenderComponent() {
     const experimentData = useContext(CurrentExperimentContext).currentExperiment
     const comms = useCommunicationContext()
 
-    const [displayObject, setDisplayObject] = useState(null)
+    const [experimentObject, setExperimentObject] = useState<{scriptsMap:any,codeModulesMap:any,taskRenderObjects:any}>({scriptsMap:null,codeModulesMap:null,taskRenderObjects:null})
     const [taskIndex, setTaskIndex] = useState(0)
 
+    function updateTaskIndex(newIndex:number|null){
+        if(newIndex){
+            setTaskIndex(newIndex)
+        }  
+        else{
+            setTaskIndex(taskIndex+1)
+        }
+    }
+
+    // TODO (later) move the comm connect into a code module instead. Then disconnect can be a module too. 
+    // Loads the experiment data from the json file. Converts the data into modules.
+    // Connects to comms tech at mount and disconnects at unmount
     useEffect(() =>{
+        async function fetchData(){
+            const [scriptsMap, codeModulesMap, tasks] = await getExperimentData(experimentData.tasks)
+
+            //Add set task index to the avaliable script functions
+            const setTaskIndexFunc = {default: updateTaskIndex}
+            scriptsMap.set("SetTaskIndex", setTaskIndexFunc)
+
+            setExperimentObject({scriptsMap:scriptsMap,codeModulesMap:codeModulesMap,taskRenderObjects:tasks})
+        }      
         if(experimentData){
-            comms.connect(experimentData.communicationMethod)
-            const tasks = getTaskTable(experimentData.tasks)
-            setDisplayObject(tasks[taskIndex])
+            fetchData()
+            if(experimentData.communicationMethod){
+                comms.connect(experimentData.communicationMethod)
+            }
         }
 
-        return () => {
-            if(experimentData){
+        return () => {           
+            if(experimentData && experimentData.communicationMethod){
                 comms.disconnect()
             }
         }
     }, [experimentData])
     
+    // Calls onLoad and unLoad scripts at correct task indexes according to the code modules in the json experiment file
+    useEffect(() => {
+        if(experimentObject.codeModulesMap){
+            callScript(experimentObject, taskIndex, "onLoad")
+        }
+        return () => {
+            if(experimentObject.codeModulesMap){
+                callScript(experimentObject, taskIndex, "onUnload")
+            }
+        }
+    },[experimentObject,taskIndex])
+
+    // Set the render object using the current taskIndex
+    let renderObject = null
+    if(experimentObject.taskRenderObjects){
+        renderObject = experimentObject.taskRenderObjects[taskIndex]
+    }
+        
     return (
-        <div className="flex h-screen w-screen bg-sky-100 items-center justify-center">{displayObject}</div>
+        <callBacksContext.Provider value={experimentObject.scriptsMap}>
+            <Suspense fallback={<p>Loading</p>}><div className="flex h-screen w-screen bg-sky-100 items-center justify-center">{renderObject}</div></Suspense>
+        </callBacksContext.Provider>
     )
 }
 

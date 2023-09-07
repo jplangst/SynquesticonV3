@@ -2,7 +2,7 @@
 var mqtt = require('mqtt');
 const fs = require('fs');
 
-let client = null;
+let client:any = null;
 
 const logFolder = "Logs";
 if (!fs.existsSync(logFolder)){

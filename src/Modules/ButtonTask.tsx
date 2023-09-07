@@ -1,37 +1,31 @@
 import type { ReactElement} from "react";
-import { writeEvent } from "../Logging/local";
 
-import { useCommunicationContext } from '../Communication/communicationModule'
+import {useContext} from "react";
+import {callBacksContext} from "../RenderComponent";
 
 type Props = {
     lazyProps : any,
 };
 
 export default function ButtonTask({lazyProps}: Props): ReactElement {
-    const comms = useCommunicationContext()
+    const scriptsMap = useContext(callBacksContext)
 
-    function onClick(){
-        //console.log("Clicked")      
-        //console.log(comms)
+    const buttonOnClick = () => {
+        if(lazyProps.onclick){
+            const onclickFunction = scriptsMap.get(lazyProps.onclick.function)
+            const functionValue = lazyProps.onclick.value
 
+            if(functionValue){
+                onclickFunction.default(functionValue);
+            }
+            else{
+                onclickFunction.default();
+            }
+        }     
+    } 
 
-       /*  const logEvent = {
-            time: Date.now(),
-            UUID: clientUUID,
-            taskIndex: lazyProps.taskIndex,
-            eventType: eventType,
-            payload: payload
-        } */
-        
-        writeEvent()
-        //writeEvent(["Button press",lazyProps.taskIndex,lazyProps.action])
-        //addToLogObject("Button press",lazyProps.taskIndex,lazyProps.action);
-        //publish(commandsTopic,{action:lazyProps.action, UUID:clientUUID})      
-    }
-
-    //const RenderModeContext = useContext(Context);
-    const buttonOnClick = () => onClick();
     return(
-        <button type="button" className="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded" onClick={buttonOnClick}>{lazyProps.label}</button>
+        <button type="button" className="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded" 
+            onClick={buttonOnClick}>{lazyProps.label}</button>
     );
 }

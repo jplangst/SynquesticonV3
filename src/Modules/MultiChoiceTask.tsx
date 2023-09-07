@@ -1,19 +1,11 @@
 import type { ReactElement } from "react";
 import {useState} from 'react';
 
-//import { useMQTTContext } from '../MQTT/MqttProvider';
-
-//import {useContext} from 'react';
-//import { Context } from '../RenderModeContext';
-
 type Props = {
   lazyProps : any
 };
 
-//let logChecked:any = []
 function MultiChoice({lazyProps}: Props): ReactElement {
-    //const {addToLogObject} = useMQTTContext();
-    //const RenderModeContext = useContext(Context);
     //checked will contain the indicies of the checked elements
     const [checked, setChecked] = useState<number[]>([]);
 
@@ -38,10 +30,10 @@ function MultiChoice({lazyProps}: Props): ReactElement {
         multiChoiceLabels.map((choiceLabel:string, choiceIndex:number) => {
             const labelId = choiceLabel+{choiceIndex};            
             return(
-              <span key={labelId}>
+              <li key={labelId}>
                 <input id={labelId} onClick={handleToggle(choiceIndex)} type="checkbox" name={inputNameGroup}/>
                 <label htmlFor={labelId}>{choiceLabel}</label> 
-              </span>
+              </li>
             )
         })
     }</form>  
