@@ -1,6 +1,6 @@
 import * as mqtt from 'mqtt/dist/mqtt.min';
 let client = null;
-const qos = 2; //{label:2, value:2}
+const qos = 2;
 
 export default{
   mqttConnect(host, mqttOption) {

@@ -8,7 +8,7 @@ export default function writeEvent(eventData:any){
     let eventLog = localStorage.getItem("eventLog")
     
     //Parse the event into a csv line
-    const csvLine = `${logEvent.time};${logEvent.UUID};${logEvent.taskIndex};${logEvent.eventType};${logEvent.payload}\n`;
+    const csvLine = `${eventData.timestamp};${logEvent.UUID};${logEvent.taskIndex};${logEvent.eventType};${logEvent.payload}\n`;
 
     if(eventLog){
         //Parse the events if they exist
@@ -21,8 +21,6 @@ export default function writeEvent(eventData:any){
         const header = `Timestamp;Client UUID;Task index;Event type;Payload\n`;
         eventLog = header+csvLine
     }
-
-    console.log(eventLog)
 
     // Update the local storage
     localStorage.setItem("eventLog", JSON.stringify(eventLog))

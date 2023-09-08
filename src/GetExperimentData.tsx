@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 const dynamicScriptsMap = new Map()
 const codeModulesMap = new Map()
 
-
 async function parseModules(tasks:any, taskIndex:number){ 
     const moduleMap = new Map()
     const renderModules:any = [] 
@@ -12,12 +11,12 @@ async function parseModules(tasks:any, taskIndex:number){
         // Adds new component modules and scripts to lookup maps
         if (!moduleMap.has(element.module) || !dynamicScriptsMap.has(element.module)){
             if(element.type == "COMPONENT"){
-                const importedModule = lazy( () => import(`../Modules/${element.module}.tsx`))
+                const importedModule = lazy( () => import(`./Modules/${element.module}.tsx`))
                 moduleMap.set(element.module, importedModule)
             }
             else if(element.type == "CODE"){
                 try{
-                    const dynamicScript = await import(`../Scripts/${element.module}.tsx`)
+                    const dynamicScript = await import(`./Scripts/${element.module}.tsx`)
                     dynamicScriptsMap.set(element.module, dynamicScript)
                 }
                 catch(e){console.log("Failed to load script dynamically:"+element.module)}
@@ -28,7 +27,7 @@ async function parseModules(tasks:any, taskIndex:number){
         if(element.type == "COMPONENT"){
             element.props.taskIndex = taskIndex;
             const Component = moduleMap.get(element.module);
-            renderModules.push(<li key={uuidv4()}><Component  lazyProps={element.props} /></li>)         
+            renderModules.push(<Component key={uuidv4()} lazyProps={element.props} />)         
         }
         else if(element.type == "CODE"){ //Adds the code module to the code modules map which is used to get and call functions with props from the json file
             //If the element already exist in the map we get it and append to it

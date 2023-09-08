@@ -7,20 +7,19 @@
       "port":"8083"
   },
   "loggingMethod": {
-    "type":"local"
+    "type":"local",
+    "logFormater":"default"
   },
-  "tasks" : [
+  "stylingFile":"sadas.css",
+  "taskStack" : [
       [    
             {"type":"CODE", "module":"ClearEventStorage", "props":{"functionInput":null,"runType":"onUnload"}}, 
-            {"type":"CODE", "module":"SetTaskIndex", "props":{"functionInput":1,"runType":"onLoad"}},   
-            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Press"}} 
+            {"type":"CODE", "module":"SetTaskIndex", "props":{"functionInput":1,"runType":"onLoad"}}
       ],
-      [    
-            {"type":"CODE", "module":"WriteEvent", "props":{"functionInput":{"taskIndex":1,"eventType":"Task start","payload":"Task started"},"runType":"onLoad"}},   
+      [      
             {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Press"}}, 
             {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"START", "onclick":{"function":"SetTaskIndex", "value":2}}},
-            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"when ready"}},
-            {"type":"CODE", "module":"WriteEvent", "props":{"functionInput":{"taskIndex":1,"eventType":"Task end","payload":"Task ended"},"runType":"onUnload"}}
+            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"when ready"}}
       ],
       [                                          
             {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Which SG has the highest level?"}}, 
@@ -38,8 +37,7 @@
             {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT","onclick":{"function":"SetTaskIndex", "value":5}}}
       ], 
       [    
-            {"type":"CODE", "module":"DownloadLogEvents", "props":{"functionInput":"logTest.csv","runType":"onLoad"}},   
-            {"type":"CODE", "module":"DownloadLogEvents", "props":{"functionInput":"logTest.csv","runType":"onUnload"}},    
+            {"type":"CODE", "module":"DownloadLogEvents", "props":{"runType":"onLoad"}},   
             {"type":"CODE", "module":"SetTaskIndex", "props":{"functionInput":6,"runType":"onLoad"}}                          
       ], 
       [                             

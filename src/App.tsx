@@ -1,7 +1,7 @@
 import {useState, useEffect, createContext} from 'react';
 import { fetchExperiment } from "./Utils/Utils";
 import CommunicationProvider from './Communication/communicationModule';
-import RenderComponent from './RenderComponent';
+import ModuleRenderComponent from './ModuleRenderComponent';
 
 const CommsContext = createContext<any>('local');
 export const CurrentExperimentContext = createContext<any>(null);
@@ -21,7 +21,7 @@ function App() {
   return (
     <CurrentExperimentContext.Provider value={{currentExperiment, setCurrentExperiment}}>
       <CommunicationProvider value={CommsContext}>
-        <RenderComponent/>
+        <ModuleRenderComponent/>
       </CommunicationProvider>
     </CurrentExperimentContext.Provider>
   )
