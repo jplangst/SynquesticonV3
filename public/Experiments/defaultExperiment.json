@@ -28,37 +28,37 @@
       {
         "type": "COMPONENT",
         "module": "TextItemTask",
-        "props": { "label": "Participant" }
+        "props": { "label": "Participant " }
       },
       {
         "type": "COMPONENT",
         "module": "ButtonTask",
-        "props": { "label": "pwr1-RO" }
+        "props": { "label": "stp-1-1" }
       },
       {
         "type": "COMPONENT",
         "module": "ButtonTask",
-        "props": { "label": "pwr1-BOP" }
+        "props": { "label": "stp-1-2" }
       },
       {
         "type": "COMPONENT",
         "module": "ButtonTask",
-        "props": { "label": "pwr1-SS" }
+        "props": { "label": "stp-1-3" }
       },
       {
         "type": "COMPONENT",
         "module": "ButtonTask",
-        "props": { "label": "pwr2-RO" }
+        "props": { "label": "stp-1-4" }
       },
       {
         "type": "COMPONENT",
         "module": "ButtonTask",
-        "props": { "label": "pwr2-BOP" }
+        "props": { "label": "stp-1-5" }
       },
       {
         "type": "COMPONENT",
-        "module": "ButtonTask",
-        "props": { "label": "pwr2-SS" }
+        "module": "TextItemTask",
+        "props": { "label": "\nCondition " }
       },
       {
         "type": "COMPONENT",
@@ -72,14 +72,14 @@
       },
       {
         "type": "COMPONENT",
-        "module": "ButtonTask",
-        "props": { "label": "noTest" }
+        "module": "TextItemTask",
+        "props": { "label": "\n\n " }
       },
       {
         "type": "COMPONENT",
         "module": "ButtonTask",
         "props": {
-          "label": "NEXT",
+          "label": "START",
           "onclick": { "function": "SetTaskIndex", "value": 2 }
         }
       }
@@ -89,7 +89,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "MICRO TASKS INSTRUCTIONS\n\nWe will now be showing you a sequence of procedure steps.\nPlease perform each step like you would in the plant.\nIf you have trouble finding information or a component,\nplease let the Halden staff know and then proceed.\n "
+          "label": "MICRO TASKS INSTRUCTIONS\n\nYou will see a sequence of procedure steps.\nPlease perform each step like you would in the plant.\nIf you have trouble finding information or a component,\nplease let the Halden staff know and then proceed.\n\n "
         }
       },
       {
@@ -106,7 +106,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "If you make a mistake, simply say that there was a mistake.\nWe are recording the session and can take out that data point later.\nOnce you completed a task, hit the NEXT button.\nYou can't go back in the task sequence, only forward.\n "
+          "label": "Once you have completed a task, hit the NEXT button.\nYou can't go back in the task sequence, only forward.\nIf you make a mistake, simply say that there was a mistake.\n\n "
         }
       },
       {
@@ -123,14 +123,14 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "Please let us know if you have any questions\nor if you are ready to move forward.\n "
+          "label": "Please let us know if you have any questions\nor if you are ready to move forward.\n\n "
         }
       },
       {
         "type": "COMPONENT",
         "module": "ButtonTask",
         "props": {
-          "label": "WAIT FOR INSTRUCTIONS",
+          "label": "PROCEED WHEN INSTRUCTED",
           "onclick": { "function": "SetTaskIndex", "value": 5 }
         }
       }
@@ -139,7 +139,7 @@
       {
         "type": "COMPONENT",
         "module": "TextItemTask",
-        "props": { "label": "When ready, hit NEXT to start the first task.\n " }
+        "props": { "label": "When ready, hit NEXT to start the first task.\n\n " }
       },
       {
         "type": "COMPONENT",
@@ -154,7 +154,7 @@
       {
         "type": "COMPONENT",
         "module": "TextItemTask",
-        "props": { "label": "Verify all MSIVs - SHUT\n " }
+        "props": { "label": "Verify all MSIVs - SHUT\n\n " }
       },
       {
         "type": "COMPONENT",
@@ -169,7 +169,7 @@
       {
         "type": "COMPONENT",
         "module": "TextItemTask",
-        "props": { "label": "Verify all MSIV bypass valves - SHUT\n " }
+        "props": { "label": "Verify all MSIV bypass valves - SHUT\n\n " }
       },
       {
         "type": "COMPONENT",
@@ -185,7 +185,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "Check any SG pressure - STABLE OR RISING (NOT FAULTED)\n "
+          "label": "Check any SG pressure - STABLE OR RISING (NOT FAULTED)\n\n "
         }
       },
       {
@@ -202,7 +202,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "Isolate Faulted SG (A)\n    - Verify SG A PORV MS-58 Shut\n    - Verify Feedwater Isolation valve FW-159 is SHUT\n    - Verify Feedwater by-pass valve FW-140 is SHUT\n    - Verify MDAFW (AF-55) and TDAFW (AF-137)\n       isolation valves to faulted SG Shut\n "
+          "label": "Isolate Faulted SG (A)\n    - Verify SG A PORV MS-58 Shut\n    - Verify Feedwater Isolation valve FW-159 is SHUT\n    - Verify Feedwater by-pass valve FW-140 is SHUT\n    - Verify MDAFW (AF-55) and TDAFW (AF-137)\n       isolation valves to faulted SG Shut\n\n "
         }
       },
       {
@@ -218,7 +218,7 @@
       {
         "type": "COMPONENT",
         "module": "TextItemTask",
-        "props": { "label": "Verify BOTH CSIP pumps RUNNING\n " }
+        "props": { "label": "Verify BOTH CSIP pumps RUNNING\n\n " }
       },
       {
         "type": "COMPONENT",
@@ -233,7 +233,7 @@
       {
         "type": "COMPONENT",
         "module": "TextItemTask",
-        "props": { "label": "Verify SI Flow GREATER THAN 250 GPM\n " }
+        "props": { "label": "Verify SI Flow GREATER THAN 250 GPM\n\n " }
       },
       {
         "type": "COMPONENT",
@@ -248,7 +248,7 @@
       {
         "type": "COMPONENT",
         "module": "TextItemTask",
-        "props": { "label": "Reset SI\n " }
+        "props": { "label": "Reset SI\n\n " }
       },
       {
         "type": "COMPONENT",
@@ -264,7 +264,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "Reset Containment Phase A AND Phase B Isolation Signals\n "
+          "label": "Reset Containment Phase A AND Phase B Isolation Signals\n\n "
         }
       },
       {
@@ -281,7 +281,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "Open Instrument Air AND Nitrogen Valves To CNMT:\n    - 1IA-819 (ISOL VALVE CONT. BLDG 236' PENETRATION (M-80))\n    - 1SI-287 (ACCUMULATOR & PRZ PORV N2 SUPPLY ISO VLV)\n "
+          "label": "Open Instrument Air AND Nitrogen Valves To CNMT:\n    - 1IA-819 (ISOL VALVE CONT. BLDG 236' PENETRATION (M-80))\n    - 1SI-287 (ACCUMULATOR & PRZ PORV N2 SUPPLY ISO VLV)\n\n "
         }
       },
       {
@@ -297,7 +297,7 @@
       {
         "type": "COMPONENT",
         "module": "TextItemTask",
-        "props": { "label": "Stop All But One CSIP\n " }
+        "props": { "label": "Stop All But One CSIP\n\n " }
       },
       {
         "type": "COMPONENT",
@@ -313,7 +313,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "Check CSIP suction - ALIGNED RWST\n    - VCT OUTLET (SHUT): 1CS-165 (LCV-115C) , 1CS-166 (LCV-115E)\n    - RWST SUCTION (OPEN): 1CS-291 (LCV-115B), 1CS-292 (LCV-115D)\n "
+          "label": "Check CSIP suction - ALIGNED RWST\n    - VCT OUTLET (SHUT): 1CS-165 (LCV-115C) , 1CS-166 (LCV-115E)\n    - RWST SUCTION (OPEN): 1CS-291 (LCV-115B), 1CS-292 (LCV-115D)\n\n "
         }
       },
       {
@@ -329,7 +329,7 @@
       {
         "type": "COMPONENT",
         "module": "TextItemTask",
-        "props": { "label": "CHECK Non-faulted SG Water Level >25%\n " }
+        "props": { "label": "CHECK Non-faulted SG Water Level >25%\n\n " }
       },
       {
         "type": "COMPONENT",
@@ -345,7 +345,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "Open Normal Miniflow Isolation Valves:\n    - CSIP A: CS-182\n    - CSIP B: CS-196\n    - CSIP C: CS-210\n    - COMMON: CS-214\n "
+          "label": "Open Normal Miniflow Isolation Valves:\n    - CSIP A: CS-182\n    - CSIP B: CS-196\n    - CSIP C: CS-210\n    - COMMON: CS-214\n\n "
         }
       },
       {
@@ -361,7 +361,7 @@
       {
         "type": "COMPONENT",
         "module": "TextItemTask",
-        "props": { "label": "Shut BIT Outlet Valves:\n    - SI-3\n    - SI-4\n " }
+        "props": { "label": "Shut BIT Outlet Valves:\n    - SI-3\n    - SI-4\n\n " }
       },
       {
         "type": "COMPONENT",
@@ -377,7 +377,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": " Verify Cold Leg AND Hot Leg Injection Valves - SHUT:\n    - SI-52\n    - SI-86\n    - SI-107\n "
+          "label": " Verify Cold Leg AND Hot Leg Injection Valves - SHUT:\n    - SI-52\n    - SI-86\n    - SI-107\n\n "
         }
       },
       {
@@ -393,7 +393,7 @@
       {
         "type": "COMPONENT",
         "module": "TextItemTask",
-        "props": { "label": "Verify Containment Spray NOT in Operation\n " }
+        "props": { "label": "Verify Containment Spray NOT in Operation\n\n " }
       },
       {
         "type": "COMPONENT",
@@ -409,7 +409,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "Open charging line isolation valves:\n    - 1CS-235\n    - 1CS-238\n "
+          "label": "Open charging line isolation valves:\n    - 1CS-235\n    - 1CS-238\n\n "
         }
       },
       {
@@ -426,7 +426,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "Check RCS pressure Greater Than 1400 PSIG. If not then STOP all RCPs\n "
+          "label": "Check RCS pressure Greater Than 1400 PSIG. If not then STOP all RCPs\n\n "
         }
       },
       {
@@ -443,7 +443,7 @@
         "type": "COMPONENT",
         "module": "TextItemTask",
         "props": {
-          "label": "ALL TASKS COMPLETED.\nThank you for your participation!\nPlease notify one of the Halden staff.\n "
+          "label": "ALL TASKS COMPLETED.\nThank you for your participation!\nPlease notify the Halden staff.\n\n "
         }
       },
       {
