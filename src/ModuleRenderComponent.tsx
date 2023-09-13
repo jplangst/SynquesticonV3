@@ -104,7 +104,7 @@ function ModuleRenderComponent() {
         
     return (
         <callBacksContext.Provider value={experimentObject.scriptsMap}>
-            <Suspense fallback={<p>Loading</p>}><div className="flex h-screen w-screen bg-sky-100 items-center justify-center">{renderObject}</div></Suspense>
+            <Suspense fallback={<p>Loading</p>}><div className="flex h-screen w-screen bg-sky-100 items-center justify-center whitespace-pre">{renderObject}</div></Suspense>
         </callBacksContext.Provider>
     )
 }

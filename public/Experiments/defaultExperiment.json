@@ -1,47 +1,466 @@
-{ 
-  "taskListUID" : "8e8c0fda-cd4d-11ed-afa1-0242ac120002", 
-  "taskListName" : "Default Experiment", 
-  "communicationMethod" : {
-      "type":"MQTT",
-      "host":"localhost",
-      "port":"8083"
+{
+  "taskListUID": "8e8c0fda-cd4d-11ed-afa1-0242ac120002",
+  "taskListName": "Default Experiment",
+  "communicationMethod": {
+    "type": "MQTT",
+    "host": "localhost",
+    "port": "8083"
   },
   "loggingMethod": {
-    "type":"local",
-    "logFormater":"default"
+    "type": "local",
+    "logFormater": "default"
   },
-  "stylingFile":"sadas.css",
-  "taskStack" : [
-      [    
-            {"type":"CODE", "module":"ClearEventStorage", "props":{"functionInput":null,"runType":"onUnload"}}, 
-            {"type":"CODE", "module":"SetTaskIndex", "props":{"functionInput":1,"runType":"onLoad"}}
-      ],
-      [      
-            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Press"}}, 
-            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"START", "onclick":{"function":"SetTaskIndex", "value":2}}},
-            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"when ready"}}
-      ],
-      [                                          
-            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Which SG has the highest level?"}}, 
-            {"type":"COMPONENT", "module":"SingleChoiceTask", "props":{"choices":"1,2,3,4"}}, 
-            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT","onclick":{"function":"SetTaskIndex", "value":3}}} 
-      ], 
-      [                                         
-            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Which RCPs are running?"}}, 
-            {"type":"COMPONENT", "module":"MultiChoiceTask", "props":{"choices":"A, B, C, D"}}, 
-            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT","onclick":{"function":"SetTaskIndex", "value":4}}} 
-      ], 
-      [                                        
-            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"What is the level in SG3?"}}, 
-            {"type":"COMPONENT", "module":"TextEntryTask", "props":{"DefaultValue":"Write answer here","EntryFieldOptions":"size=20,2"}}, 
-            {"type":"COMPONENT", "module":"ButtonTask", "props":{"label":"NEXT","onclick":{"function":"SetTaskIndex", "value":5}}}
-      ], 
-      [    
-            {"type":"CODE", "module":"DownloadLogEvents", "props":{"runType":"onLoad"}},   
-            {"type":"CODE", "module":"SetTaskIndex", "props":{"functionInput":6,"runType":"onLoad"}}                          
-      ], 
-      [                             
-            {"type":"COMPONENT", "module":"TextItemTask", "props":{"label":"Thanks for participating!"}}
-      ] 
+  "stylingFile": "sadas.css",
+  "taskStack": [
+    [
+      {
+        "type": "CODE",
+        "module": "ClearEventStorage",
+        "props": { "functionInput": null, "runType": "onUnload" }
+      },
+      {
+        "type": "CODE",
+        "module": "SetTaskIndex",
+        "props": { "functionInput": 1, "runType": "onLoad" }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": { "label": "Participant" }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": { "label": "pwr1-RO" }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": { "label": "pwr1-BOP" }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": { "label": "pwr1-SS" }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": { "label": "pwr2-RO" }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": { "label": "pwr2-BOP" }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": { "label": "pwr2-SS" }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": { "label": "1screen" }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": { "label": "3screen" }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": { "label": "noTest" }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 2 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "MICRO TASKS INSTRUCTIONS\n\nWe will now be showing you a sequence of procedure steps.\nPlease perform each step like you would in the plant.\nIf you have trouble finding information or a component,\nplease let the Halden staff know and then proceed.\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 3 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "If you make a mistake, simply say that there was a mistake.\nWe are recording the session and can take out that data point later.\nOnce you completed a task, hit the NEXT button.\nYou can't go back in the task sequence, only forward.\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT ",
+          "onclick": { "function": "SetTaskIndex", "value": 4 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "Please let us know if you have any questions\nor if you are ready to move forward.\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "WAIT FOR INSTRUCTIONS",
+          "onclick": { "function": "SetTaskIndex", "value": 5 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": { "label": "When ready, hit NEXT to start the first task.\n " }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 6 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": { "label": "Verify all MSIVs - SHUT\n " }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 7 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": { "label": "Verify all MSIV bypass valves - SHUT\n " }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 8 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "Check any SG pressure - STABLE OR RISING (NOT FAULTED)\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 9 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "Isolate Faulted SG (A)\n    - Verify SG A PORV MS-58 Shut\n    - Verify Feedwater Isolation valve FW-159 is SHUT\n    - Verify Feedwater by-pass valve FW-140 is SHUT\n    - Verify MDAFW (AF-55) and TDAFW (AF-137)\n       isolation valves to faulted SG Shut\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 10 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": { "label": "Verify BOTH CSIP pumps RUNNING\n " }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 11 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": { "label": "Verify SI Flow GREATER THAN 250 GPM\n " }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 12 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": { "label": "Reset SI\n " }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 13 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "Reset Containment Phase A AND Phase B Isolation Signals\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 14 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "Open Instrument Air AND Nitrogen Valves To CNMT:\n    - 1IA-819 (ISOL VALVE CONT. BLDG 236' PENETRATION (M-80))\n    - 1SI-287 (ACCUMULATOR & PRZ PORV N2 SUPPLY ISO VLV)\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 15 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": { "label": "Stop All But One CSIP\n " }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 16 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "Check CSIP suction - ALIGNED RWST\n    - VCT OUTLET (SHUT): 1CS-165 (LCV-115C) , 1CS-166 (LCV-115E)\n    - RWST SUCTION (OPEN): 1CS-291 (LCV-115B), 1CS-292 (LCV-115D)\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 17 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": { "label": "CHECK Non-faulted SG Water Level >25%\n " }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 18 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "Open Normal Miniflow Isolation Valves:\n    - CSIP A: CS-182\n    - CSIP B: CS-196\n    - CSIP C: CS-210\n    - COMMON: CS-214\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 19 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": { "label": "Shut BIT Outlet Valves:\n    - SI-3\n    - SI-4\n " }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 20 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": " Verify Cold Leg AND Hot Leg Injection Valves - SHUT:\n    - SI-52\n    - SI-86\n    - SI-107\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 21 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": { "label": "Verify Containment Spray NOT in Operation\n " }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 22 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "Open charging line isolation valves:\n    - 1CS-235\n    - 1CS-238\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 23 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "Check RCS pressure Greater Than 1400 PSIG. If not then STOP all RCPs\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "NEXT",
+          "onclick": { "function": "SetTaskIndex", "value": 24 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "COMPONENT",
+        "module": "TextItemTask",
+        "props": {
+          "label": "ALL TASKS COMPLETED.\nThank you for your participation!\nPlease notify one of the Halden staff.\n "
+        }
+      },
+      {
+        "type": "COMPONENT",
+        "module": "ButtonTask",
+        "props": {
+          "label": "TEST COMPLETED - DO NOT PROCEED",
+          "onclick": { "function": "SetTaskIndex", "value": 25 }
+        }
+      }
+    ],
+    [
+      {
+        "type": "CODE",
+        "module": "DownloadLogEvents",
+        "props": { "runType": "onLoad" }
+      }
+    ]
   ]
 }

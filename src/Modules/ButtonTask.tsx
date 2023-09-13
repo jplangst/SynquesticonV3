@@ -37,7 +37,7 @@ export default function ButtonTask({lazyProps}: Props): ReactElement {
     } 
 
     return(
-        <button type="button" className="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded" 
+        <button type="button" className="bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded m-1" 
             onClick={buttonOnClick}>{lazyProps.label}</button>
     );
 }
