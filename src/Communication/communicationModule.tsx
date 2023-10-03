@@ -56,7 +56,8 @@ function disconnect(){
 
 
 interface Type {
-    children: any
+    children: any,
+    value: any
 }
 
 export const CommunicationContext = createContext<CommunicationContextType>({communicationDetails,connect, publish, subscribe, disconnect, eventLogTopic, commandsTopic});

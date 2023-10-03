@@ -1,4 +1,3 @@
-//const express = require("express");
 var mqtt = require('mqtt');
 const fs = require('fs');
 
@@ -15,7 +14,7 @@ const eventTopicName = 'LogEvents'
 
 let headerWritten = false;
 
-function connectToMQTTBroker(host, port){
+function connectToMQTTBroker(host:string, port:string){
     const clientId = "LogService";
     const username = "";
     const password = "";
@@ -33,15 +32,16 @@ function connectToMQTTBroker(host, port){
         qos: 2,
         retain: false
         },
-        rejectUnauthorized: false
+        rejectUnauthorized: false,
+        clientId: clientId,
+        username: username,
+        password: password
     };
-    options.clientId = clientId;
-    options.username = username;
-    options.password = password;
+
 
     client = mqtt.connect(url, options) 
 
-    client.on("error", (err) => {
+    client.on("error", (err: any) => {
         console.log("Error: ", err);
         client.end();
     });
@@ -55,7 +55,7 @@ function connectToMQTTBroker(host, port){
     });
 
     // Received Message
-    client.on("message", (topic, message) => {
+    client.on("message", (topic:string, message:string) => {
         if(topic !== eventTopicName){
             return
         }
@@ -66,9 +66,9 @@ function connectToMQTTBroker(host, port){
             writeEvent(csvLine);
         }
 
-        parsedMessage = JSON.parse(message);
+        let parsedMessage = JSON.parse(message);
         console.log(parsedMessage)
-        parsedMessage.forEach(logEvent => {
+        parsedMessage.forEach((logEvent: { time: any; UUID: any; taskIndex: any; eventType: any; payload: any; }) => {
             const csvLine = `${logEvent.time},${logEvent.UUID},${logEvent.taskIndex},${logEvent.eventType},${logEvent.payload}\n`;
             writeEvent(csvLine);
         });
@@ -76,7 +76,7 @@ function connectToMQTTBroker(host, port){
     });
 }
 
-function writeEvent(content){
+function writeEvent(content:string){
     try {
         fs.appendFileSync(logFile, content) 
       } catch (err) {
